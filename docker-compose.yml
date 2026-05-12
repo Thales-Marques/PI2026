@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pi2026_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wms_logistics
+    ports:
+      - "5432:5432"
+    volumes:
+      - pi2026_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  pi2026_postgres_data:

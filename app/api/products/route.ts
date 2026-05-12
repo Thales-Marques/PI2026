@@ -4,13 +4,32 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, internalCode, expirationDate, quantity, batchCode } = body;
+    const {
+      name,
+      internalCode,
+      expirationDate,
+      quantity,
+      batchCode,
+      unitWeight,
+    } = body;
+
+    const weight =
+      unitWeight === undefined || unitWeight === null || unitWeight === ""
+        ? undefined
+        : Number(unitWeight);
 
     // 1. Cria o produto ou apenas o identifica se já existir
     const product = await prisma.product.upsert({
       where: { internalCode },
-      update: { name },
-      create: { name, internalCode },
+      update: {
+        name,
+        ...(weight !== undefined && !Number.isNaN(weight) ? { unitWeight: weight } : {}),
+      },
+      create: {
+        name,
+        internalCode,
+        unitWeight: weight !== undefined && !Number.isNaN(weight) ? weight : 0,
+      },
     });
 
     // 2. Cria o Lote específico para esta entrada

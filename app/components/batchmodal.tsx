@@ -32,18 +32,18 @@ export default function BatchModal({
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden border border-gray-200">
         {/* Header do Modal */}
-        <div className="bg-teal-700 p-6 text-white flex justify-between items-center">
+        <div className="flex items-center justify-between border-b border-slate-800/80 bg-[#0F172A] p-6 text-white">
           <div>
-            <h2 className="text-2xl font-black uppercase tracking-tighter">
-              Detalhes do Estoque
+            <h2 className="text-xl font-semibold tracking-tight">
+              Detalhes do estoque
             </h2>
-            <p className="text-teal-100 text-sm font-mono">
-              {product.name} | SKU: {product.internalCode}
+            <p className="mt-1 font-mono text-sm text-slate-300">
+              {product.name} · SKU {product.internalCode}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="hover:bg-teal-600 p-2 rounded-full transition-colors text-2xl"
+            className="rounded-full p-2 text-2xl text-slate-300 transition hover:bg-white/10"
           >
             ✕
           </button>
@@ -60,12 +60,12 @@ export default function BatchModal({
                 return (
                   <div
                     key={batch.id}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border-l-4 border-teal-500 shadow-sm hover:shadow-md transition-shadow"
+                    className="flex items-center justify-between rounded-xl border border-[#D8E0EA] border-l-4 border-l-[#009B8F] bg-[#F6F8FB] p-4 shadow-sm transition-shadow hover:shadow-md"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold uppercase">
-                          Lote: {batch.batchCode}
+                        <span className="rounded bg-[#009B8F]/15 px-2 py-0.5 text-[10px] font-semibold uppercase text-[#006b63]">
+                          Lote {batch.batchCode}
                         </span>
                         <span className="text-gray-400 text-[10px]">
                           Registrado em:{" "}
@@ -73,10 +73,8 @@ export default function BatchModal({
                         </span>
                       </div>
                       <p
-                        className={`text-sm font-bold ${
-                          isExpired
-                            ? "text-red-600"
-                            : "text-gray-700"
+                        className={`text-sm font-semibold ${
+                          isExpired ? "text-[#E11D48]" : "text-[#0F172A]"
                         }`}
                       >
                         Validade:{" "}
@@ -109,7 +107,7 @@ export default function BatchModal({
         <div className="p-4 bg-gray-100 border-t flex justify-end">
           <button
             onClick={onClose}
-            className="px-6 py-2 bg-gray-800 text-white rounded-lg font-bold text-xs uppercase hover:bg-gray-700 transition-all"
+            className="rounded-lg bg-[#0F172A] px-6 py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-slate-800"
           >
             Fechar Relatório
           </button>

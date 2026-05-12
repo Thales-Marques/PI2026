@@ -11,6 +11,8 @@ model Product {
   id           String     @id @default(uuid())
   internalCode String     @unique
   name         String
+  /// Peso unitário em kg (referência para cálculo de peso do lote na UI)
+  unitWeight   Float      @default(0)
   createdAt    DateTime   @default(now())
   batches      Batch[]    // Relação com vários lotes
   movements    Movement[] // Histórico de entradas/saídas
